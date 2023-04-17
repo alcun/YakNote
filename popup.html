@@ -1,0 +1,30 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notepad</title>
+    <!-- Link to custom CSS for styling -->
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Notepad</h1>
+        <div class="form-group mt-4">
+            <textarea id="noteInput" class="form-control" rows="4" placeholder="Enter your note"></textarea>
+        </div>
+        <div class="text-center mt-4">
+            <button id="saveButton" class="btn btn-primary">Save Note</button>
+            <button id="clearButton" class="btn btn-secondary">Clear</button>
+        </div>
+        <ul id="noteList" class="note-list mt-4">
+        </ul>
+    </div>
+
+    <!-- Link to popup.js for functionality -->
+    <script src="popup.js"></script>
+</body>
+
+</html>
