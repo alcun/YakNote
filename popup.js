@@ -72,23 +72,33 @@ document.addEventListener("DOMContentLoaded", function () {
     chrome.storage.sync.set({ notes: notes });
   }
 
-  // Show tooltip with the given message and color
   function showTooltip(message, color) {
     const tooltip = document.createElement("div");
     tooltip.className = "tooltip";
-    tooltip.textContent = message;
     tooltip.style.color = color;
-    document.body.appendChild(tooltip);
-
+    tooltip.textContent = message;
+  
     const inputRect = noteInput.getBoundingClientRect();
     const tooltipRect = tooltip.getBoundingClientRect();
-    const top = inputRect.top - tooltipRect.height - 10;
-    const left = inputRect.left + (inputRect.width - tooltipRect.width) / 2;
-    tooltip.style.top = top + "px";
-    tooltip.style.left = left + "px";
-
+  
+    tooltip.style.left = `${(inputRect.left + inputRect.right - tooltipRect.width) / 2}px`;
+  
+    if (inputRect.top - tooltipRect.height - 10 > 0) {
+      tooltip.className = "tooltip tooltip-above";
+      tooltip.style.top = `${inputRect.top - tooltipRect.height - 10}px`;
+    } else {
+      tooltip.className = "tooltip tooltip-below";
+      tooltip.style.top = `${inputRect.bottom + 10}px`;
+    }
+  
+    document.body.appendChild(tooltip);
+  
     setTimeout(() => {
       document.body.removeChild(tooltip);
     }, 2000);
   }
+  
+
+
+
 });
