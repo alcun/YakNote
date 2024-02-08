@@ -11,7 +11,9 @@
   <body>
     <div class="wrapper">
       <div class="flex-row">
-        <h1 class="title">🐂YakNote </h1>
+        <h1 class="title">YakNote </h1>
+        <div class="flex-row"><p>cow speak</p>
+        <h1>🐂</h1></div>
         <div id="status"></div>
         <button id="darkModeToggle" class="btn"/>
       </div>
@@ -24,6 +26,7 @@
         ></textarea>
       </div>
       <div class="btnRow">
+        <input type="text" class="filter-control" onkeyup="filterNotes()" placeholder="Filter notes..."/>
         <button id="clearButton" class="btn btn-secondary">Clear</button>
         <button id="saveButton" class="btn btn-primary">Save Note</button>
     </div>

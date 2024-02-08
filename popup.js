@@ -1,14 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
-
-
-  //Darkmode
+  // Darkmode
   const darkModeToggle = document.getElementById("darkModeToggle");
+  const noteInput = document.getElementById("noteInput");
+  const saveButton = document.getElementById("saveButton");
+  const clearButton = document.getElementById("clearButton");
+  const noteList = document.getElementById("noteList");
+  const filterInput = document.querySelector('.filter-control'); // Filter input
 
   // Function to update the dark mode status and the emoji
   function updateDarkMode(isDarkMode) {
     document.body.classList.toggle("dark-mode", isDarkMode);
     darkModeToggle.textContent = isDarkMode ? "🌝" : "🌞";
     chrome.storage.sync.set({ darkMode: isDarkMode });
+  }
+
+  // Function to update the visibility of the filter box
+  function updateFilterVisibility() {
+    const notes = document.querySelectorAll('.note-list-item');
+    filterInput.style.display = notes.length > 0 ? 'block' : 'none';
   }
 
   // Load the dark mode setting when the extension is loaded
@@ -22,17 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
     updateDarkMode(isDarkMode);
   });
 
-  const noteInput = document.getElementById("noteInput");
-  const saveButton = document.getElementById("saveButton");
-  const clearButton = document.getElementById("clearButton");
-  const noteList = document.getElementById("noteList");
-
-  // Load saved notes from storage
+  // Load saved notes from storage and update filter visibility
   chrome.storage.sync.get({ notes: [] }, function (result) {
     const reversedNotes = result.notes.reverse();
     reversedNotes.forEach(function (note) {
       createNoteListItem(note);
     });
+    updateFilterVisibility(); // Update filter visibility after loading notes
   });
 
   // Save note when saveButton is clicked
@@ -43,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
       noteInput.value = "";
       noteInput.focus();
       showTooltip("Note saved", "#00ff00");
+      updateFilterVisibility(); // Update filter visibility after saving a note
     }
   });
 
@@ -53,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showTooltip("Input cleared", "red");
   });
 
+  // Function to create a list item for a note
   function createNoteListItem(note) {
     const noteListItem = document.createElement("li");
     noteListItem.className = "note-list-item";
@@ -64,13 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌";
     deleteButton.addEventListener("click", () => {
-      const confirmDelete = confirm(
-        "Are you sure you want to delete this note?"
-      );
+      const confirmDelete = confirm("Are you sure you want to delete this note?");
       if (confirmDelete) {
         noteList.removeChild(noteListItem);
         saveNotesToStorage();
         showTooltip("Note deleted", "red");
+        updateFilterVisibility(); // Update filter visibility after deleting a note
       }
     });
     noteListItem.appendChild(deleteButton);
@@ -87,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     saveNotesToStorage();
   }
 
+  // Function to save notes to storage
   function saveNotesToStorage() {
     const noteListItems = document.getElementsByClassName("note-list-item");
     const notes = Array.from(noteListItems).map(function (noteListItem) {
@@ -95,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
     chrome.storage.sync.set({ notes: notes });
   }
 
+  // Function to show a tooltip message
   function showTooltip(message, color) {
-    // Remove any existing tooltips
     const existingTooltip = document.querySelector(".tooltip");
     if (existingTooltip) {
       existingTooltip.remove();
@@ -106,22 +113,36 @@ document.addEventListener("DOMContentLoaded", function () {
     tooltip.className = "tooltip";
     tooltip.style.color = color;
     tooltip.textContent = message;
-
-    // Get the element with the ID 'status'
     const statusElement = document.getElementById("status");
 
-    // Ensure the 'status' element exists
     if (!statusElement) {
       console.error("Element with ID 'status' not found.");
       return;
     }
 
-    // Append the tooltip as a child of the 'status' element
     statusElement.appendChild(tooltip);
 
-    // Removing the tooltip after 2 seconds
     setTimeout(() => {
-      statusElement.removeChild(tooltip);
+      if (statusElement.contains(tooltip)) {
+        statusElement.removeChild(tooltip);
+      }
     }, 2000);
   }
+
+  // Event listener for the filter box
+  filterInput.addEventListener('input', filterNotes);
+
+  // Function to filter notes based on the search input
+
+  function filterNotes() {
+    const filterValue = filterInput.value.toLowerCase();
+    const notes = document.querySelectorAll('.note-list-item');
+
+    notes.forEach(note => {
+      const text = note.textContent.toLowerCase();
+      const isVisible = text.includes(filterValue);
+      note.style.display = isVisible ? '' : 'none'; // Use '' to revert to default display style
+    });
+  }
+
 });
