@@ -1,6 +1,12 @@
 .wrapper {
 }
 
+.flex-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .form-control {
   background-color: #f4f4f4;
   border: none;

@@ -73,28 +73,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showTooltip(message, color) {
-    const tooltip = document.createElement("div");
+    const tooltip = document.createElement("p");
     tooltip.className = "tooltip";
     tooltip.style.color = color;
     tooltip.textContent = message;
   
-    const inputRect = noteInput.getBoundingClientRect();
-    const tooltipRect = tooltip.getBoundingClientRect();
+    // Get the element with the ID 'status'
+    const statusElement = document.getElementById("status");
   
-    tooltip.style.left = `${(inputRect.left + inputRect.right - tooltipRect.width) / 2}px`;
-  
-    if (inputRect.top - tooltipRect.height - 10 > 0) {
-      tooltip.className = "tooltip tooltip-above";
-      tooltip.style.top = `${inputRect.top - tooltipRect.height - 10}px`;
-    } else {
-      tooltip.className = "tooltip tooltip-below";
-      tooltip.style.top = `${inputRect.bottom + 10}px`;
+    // Ensure the 'status' element exists
+    if (!statusElement) {
+      console.error("Element with ID 'status' not found.");
+      return;
     }
   
-    document.body.appendChild(tooltip);
+    // Append the tooltip as a child of the 'status' element
+    statusElement.appendChild(tooltip);
   
+    // Removing the tooltip after 2 seconds
     setTimeout(() => {
-      document.body.removeChild(tooltip);
+      statusElement.removeChild(tooltip);
     }, 2000);
   }
   
