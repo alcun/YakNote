@@ -1,4 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const darkModeToggle = document.getElementById("darkModeToggle");
+
+  // Function to update the dark mode status and the emoji
+  function updateDarkMode(isDarkMode) {
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    darkModeToggle.textContent = isDarkMode ? "🌝" : "🌞";
+    chrome.storage.sync.set({ darkMode: isDarkMode });
+  }
+
+  // Load the dark mode setting when the extension is loaded
+  chrome.storage.sync.get(["darkMode"], function (result) {
+    updateDarkMode(result.darkMode);
+  });
+
+  // Toggle dark mode when the button is clicked
+  darkModeToggle.addEventListener("click", function () {
+    const isDarkMode = !document.body.classList.contains("dark-mode");
+    updateDarkMode(isDarkMode);
+  });
+
   const noteInput = document.getElementById("noteInput");
   const saveButton = document.getElementById("saveButton");
   const clearButton = document.getElementById("clearButton");
@@ -19,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
       createNoteListItem(note);
       noteInput.value = "";
       noteInput.focus();
-      showTooltip("Note saved", "green");
+      showTooltip("Note saved", "#00ff00");
     }
   });
 
@@ -56,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     copyButton.textContent = "📋";
     copyButton.addEventListener("click", () => {
       navigator.clipboard.writeText(note);
-      showTooltip("Note copied", "blue");
+      showTooltip("Note copied", "#008b8b");
     });
     noteListItem.appendChild(copyButton);
     noteList.prepend(noteListItem);
@@ -73,30 +93,32 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showTooltip(message, color) {
+    // Remove any existing tooltips
+    const existingTooltip = document.querySelector(".tooltip");
+    if (existingTooltip) {
+      existingTooltip.remove();
+    }
+
     const tooltip = document.createElement("p");
     tooltip.className = "tooltip";
     tooltip.style.color = color;
     tooltip.textContent = message;
-  
+
     // Get the element with the ID 'status'
     const statusElement = document.getElementById("status");
-  
+
     // Ensure the 'status' element exists
     if (!statusElement) {
       console.error("Element with ID 'status' not found.");
       return;
     }
-  
+
     // Append the tooltip as a child of the 'status' element
     statusElement.appendChild(tooltip);
-  
+
     // Removing the tooltip after 2 seconds
     setTimeout(() => {
       statusElement.removeChild(tooltip);
     }, 2000);
   }
-  
-
-
-
 });

@@ -1,7 +1,24 @@
-.wrapper {
+html{
+  width: 100%;
+  min-width: 600px;
 }
 
-.flex-row{
+.wrapper {
+  
+}
+
+/* Use a monospaced font for the body */
+body {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  overflow-y: scroll;
+  /* Additional styles for the body */
+}
+
+body::-webkit-scrollbar, .form-control::-webkit-scrollbar {
+  display: none;
+}
+
+.flex-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,10 +30,14 @@
   border-radius: 10px;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
   color: #333;
-  font-family: "Helvetica Neue", sans-serif;
+  /* font-family: "Helvetica Neue", sans-serif; */
   font-size: 16px;
   padding: 10px;
-  width: 400px;
+  width: 598px;
+  min-width: 598px;
+  max-width: 598px;
+  min-height: 120px;
+  max-height: 320px;
 }
 
 .btnRow {
@@ -36,6 +57,7 @@
 }
 
 .note-list-item {
+  max-width: 100%;
   display: flex;
   align-items: flex-start;
   border-radius: 10px;
@@ -46,11 +68,16 @@
 }
 
 .note-list-item span {
-  flex: 1;
+  flex: 1; /* Allow the span to grow and occupy available space */
+  overflow: hidden; /* Hide any content that exceeds the span's boundaries */
   font-size: 17px;
   line-height: 20px;
   color: #1c1c1e;
   padding: 1rem;
+  word-wrap: break-word;
+  max-width: calc(
+    100% - 80px
+  ); /* Limit the maximum width of the span (adjust the value as needed) */
 }
 
 button {
@@ -70,4 +97,33 @@ button:hover {
   cursor: pointer;
 }
 
+body.dark-mode {
+  background-color: #333;
+  color: white;
+}
 
+.dark-mode .btn {
+  background-color: #555;
+  color: white;
+}
+
+.dark-mode textarea {
+  background-color: #555;
+  color: white;
+  border-color: #777;
+}
+
+.dark-mode .note-list-item {
+  background-color: #444;
+  color: white;
+}
+
+.dark-mode span {
+  color: white;
+}
+
+h1 {
+  margin-right: auto;
+}
+
+/* popup.css */

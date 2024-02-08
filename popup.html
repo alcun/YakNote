@@ -1,30 +1,36 @@
 <!-- popup.html -->
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Notepad</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simplerclip</title>
     <!-- Link to custom CSS for styling -->
-    <link rel="stylesheet" href="popup.css">
-</head>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <div class="flex-row"><h1 class="title">Oxnote🐂</h1><div id="status"></div></div>
-        <div class="form-group mt-4">
-            <textarea id="noteInput" class="form-control" rows="4" placeholder="Enter your note"></textarea>
-        </div>
-        <div class="btnRow">
-            <button id="saveButton" class="btn btn-primary">Save Note</button>
-            <button id="clearButton" class="btn btn-secondary">Clear</button>
-        </div>
-        <ul id="noteList" class="note-list">
-        </ul>
+      <div class="flex-row">
+        <h1 class="title">Simplerclip🐂</h1>
+        <div id="status"></div>
+        <button id="darkModeToggle" class="btn"/>
+      </div>
+      <div class="form-group mt-4">
+        <textarea
+          id="noteInput"
+          class="form-control"
+          rows="4"
+          placeholder="Enter your note"
+        ></textarea>
+      </div>
+      <div class="btnRow">
+        <button id="saveButton" class="btn btn-primary">Save Note</button>
+        <button id="clearButton" class="btn btn-secondary">Clear</button>
+      </div>
+      <ul id="noteList" class="note-list"></ul>
     </div>
 
     <!-- Link to popup.js for functionality -->
     <script src="popup.js"></script>
-</body>
-
+  </body>
 </html>
