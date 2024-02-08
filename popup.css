@@ -4,7 +4,7 @@ html{
 }
 
 .wrapper {
-  
+  position: relative;
 }
 
 /* Use a monospaced font for the body */
@@ -47,9 +47,11 @@ body::-webkit-scrollbar, .form-control::-webkit-scrollbar {
 /* Styling for focus state */
 .form-control:focus {
   outline: none;
-  border-color: dodgerblue;
-  box-shadow: 0 0 5px dodgerblue;
+  border-color: #01e2d8;
+
+  box-shadow: 0 0 5px #01e2d8;
 }
+
 
 
 .btnRow {
@@ -137,5 +139,10 @@ body.dark-mode {
 h1 {
   margin-right: auto;
 }
+#status {
+  position: fixed;
+  right: 65px;
+}
+
 
 /* popup.css */

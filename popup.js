@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+
+  //Darkmode
   const darkModeToggle = document.getElementById("darkModeToggle");
 
   // Function to update the dark mode status and the emoji
@@ -76,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
     copyButton.textContent = "📋";
     copyButton.addEventListener("click", () => {
       navigator.clipboard.writeText(note);
-      showTooltip("Note copied", "#008b8b");
+      showTooltip("Note copied", "#01e2d8");
     });
     noteListItem.appendChild(copyButton);
     noteList.prepend(noteListItem);

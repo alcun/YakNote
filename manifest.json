@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "Notepad Extension",
+    "name": "Yaknote",
     "version": "1.0",
     "description": "A basic notepad Chrome extension",
     "permissions": ["storage"],
@@ -13,6 +13,11 @@
         "js": ["content.js"]
       }
     ],
-    "manifest_version": 2
+    "icons": {
+      "16": "yaknote2.png",
+      "48": "yaknote2.png",
+      "128": "yaknote2.png"
+
+    }
   }
   
