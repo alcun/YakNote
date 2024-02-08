@@ -38,7 +38,19 @@ body::-webkit-scrollbar, .form-control::-webkit-scrollbar {
   max-width: 598px;
   min-height: 120px;
   max-height: 320px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+  font-size: 16px;
 }
+
+/* Styling for focus state */
+.form-control:focus {
+  outline: none;
+  border-color: dodgerblue;
+  box-shadow: 0 0 5px dodgerblue;
+}
+
 
 .btnRow {
   display: flex;
