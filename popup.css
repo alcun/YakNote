@@ -1,4 +1,4 @@
-html{
+html {
   width: 100%;
   min-width: 600px;
   border-radius: 12px;
@@ -10,12 +10,13 @@ html{
 
 /* Use a monospaced font for the body */
 body {
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
   overflow-y: scroll;
   /* Additional styles for the body */
 }
 
-body::-webkit-scrollbar, .form-control::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.form-control::-webkit-scrollbar {
   display: none;
 }
 
@@ -54,21 +55,20 @@ body::-webkit-scrollbar, .form-control::-webkit-scrollbar {
   /* font-family: "Helvetica Neue", sans-serif; */
   font-size: 14px;
   padding: 10px;
-width: 100%;
+  width: 100%;
   border: 2px solid #ccc;
   border-radius: 5px;
   transition: border-color 0.3s ease;
-  }
+}
 
 /* Styling for focus state */
-.form-control:focus, .filter-control:focus  {
+.form-control:focus,
+.filter-control:focus {
   outline: none;
   border-color: #01e2d8;
 
   box-shadow: 0 0 5px #01e2d8;
 }
-
-
 
 .btnRow {
   display: flex;
@@ -121,14 +121,12 @@ button {
   border: none;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, transform 0.3s; /* smooth transition for background and transform */
-
 }
 
 button:hover {
   background-color: #07dbd8;
   cursor: pointer;
   transform: scale(1.05); /* slightly enlarge the button */
-
 }
 
 body.dark-mode {
@@ -162,6 +160,12 @@ body.dark-mode {
   color: white;
 }
 
+.dark-mode p {
+  color: white;
+  background-color: #555;
+  color: white;
+}
+
 h1 {
 }
 #status {
@@ -169,6 +173,41 @@ h1 {
   right: 65px;
 }
 
-.btnRow .btn {width: 160px;}
+.btnRow .btn {
+  width: 160px;
+}
 
 /* popup.css */
+
+#cowIcon {
+  cursor: pointer;
+  transform: translateX(80px);
+}
+
+.text-bubble {
+  display: none;
+  position: absolute;
+  left: 61%; /* Adjust this value as needed to position the bubble */
+  top: 20px;
+  transform: translate(
+    -100%,
+    -50%
+  ); /* Adjust to position the bubble correctly */
+  white-space: nowrap;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 5px 10px;
+  z-index: 10;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: -21px; /* Position the tail to the right of the bubble */
+    transform: translateY(-50%);
+    transform: rotate(3.142rad);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent #555 transparent transparent;
+  }
+}

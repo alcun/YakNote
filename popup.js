@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const saveButton = document.getElementById("saveButton");
   const clearButton = document.getElementById("clearButton");
   const noteList = document.getElementById("noteList");
-  const filterInput = document.querySelector('.filter-control'); // Filter input
+  const filterInput = document.querySelector(".filter-control"); // Filter input
+  // Event listener for the cow icon
+  const cowIcon = document.getElementById("cowIcon");
+  const textBubble = document.getElementById("textBubble");
 
   // Function to update the dark mode status and the emoji
   function updateDarkMode(isDarkMode) {
@@ -16,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to update the visibility of the filter box
   function updateFilterVisibility() {
-    const notes = document.querySelectorAll('.note-list-item');
-    filterInput.style.display = notes.length > 0 ? 'block' : 'none';
+    const notes = document.querySelectorAll(".note-list-item");
+    filterInput.style.display = notes.length > 0 ? "block" : "none";
   }
 
   // Load the dark mode setting when the extension is loaded
@@ -71,7 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "❌";
     deleteButton.addEventListener("click", () => {
-      const confirmDelete = confirm("Are you sure you want to delete this note?");
+      const confirmDelete = confirm(
+        "Are you sure you want to delete this note?"
+      );
       if (confirmDelete) {
         noteList.removeChild(noteListItem);
         saveNotesToStorage();
@@ -130,19 +135,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Event listener for the filter box
-  filterInput.addEventListener('input', filterNotes);
+  filterInput.addEventListener("input", filterNotes);
 
   // Function to filter notes based on the search input
 
   function filterNotes() {
     const filterValue = filterInput.value.toLowerCase();
-    const notes = document.querySelectorAll('.note-list-item');
+    const notes = document.querySelectorAll(".note-list-item");
 
-    notes.forEach(note => {
+    notes.forEach((note) => {
       const text = note.textContent.toLowerCase();
       const isVisible = text.includes(filterValue);
-      note.style.display = isVisible ? '' : 'none'; // Use '' to revert to default display style
+      note.style.display = isVisible ? "" : "none"; // Use '' to revert to default display style
     });
   }
 
+  cowIcon.addEventListener("click", function () {
+    textBubble.style.display = "block"; // Show the text bubble
+
+    // Hide the text bubble after a delay
+    setTimeout(function () {
+      textBubble.style.display = "none";
+    }, 2000); // Adjust the time (2000ms = 2 seconds) as needed
+  });
 });
