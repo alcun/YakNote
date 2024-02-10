@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   clearButton.addEventListener("click", function () {
     noteInput.value = "";
     noteInput.focus();
-    showTooltip("Input cleared", "red");
+    showTooltip("Input cleared", "#FFCCCC");
   });
 
   // Function to create a list item for a note
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (confirmDelete) {
         noteList.removeChild(noteListItem);
         saveNotesToStorage();
-        showTooltip("Note deleted", "red");
+        showTooltip("Note deleted", "#ff3333");
         updateFilterVisibility(); // Update filter visibility after deleting a note
       }
     });
