@@ -14,9 +14,9 @@
       }
     ],
     "icons": {
-      "16": "yaknote2.png",
-      "48": "yaknote2.png",
-      "128": "yaknote2.png"
+      "16": "yaknote16.png",
+      "48": "yaknote32.png",
+      "128": "yaknote64.png"
 
     }
   }

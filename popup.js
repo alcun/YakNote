@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   clearButton.addEventListener("click", function () {
     noteInput.value = "";
     noteInput.focus();
-    showTooltip("Input cleared", "#FFCCCC");
+    showTooltip("Input cleared", "#e63946");
   });
 
   // Function to create a list item for a note
