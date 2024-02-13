@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Yaknote",
     "version": "1.0",
-    "description": "A basic notepad Chrome extension",
+    "description": "YakNote - Simple notes in your browser",
     "permissions": ["storage"],
     "browser_action": {
       "default_popup": "popup.html"
@@ -14,9 +14,9 @@
       }
     ],
     "icons": {
-      "16": "yaknote16.png",
-      "48": "yaknote32.png",
-      "128": "yaknote64.png"
+      "16": "yaknote128.png",
+      "48": "yaknote128.png",
+      "128": "yaknote128.png"
 
     }
   }
