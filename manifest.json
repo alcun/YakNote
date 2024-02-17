@@ -1,23 +1,21 @@
 {
-    "manifest_version": 2,
-    "name": "Yaknote",
-    "version": "1.0",
-    "description": "YakNote - Simple notes in your browser",
-    "permissions": ["storage"],
-    "browser_action": {
-      "default_popup": "popup.html"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ],
-    "icons": {
-      "16": "yaknote128.png",
-      "48": "yaknote128.png",
-      "128": "yaknote128.png"
-
+  "manifest_version": 3,
+  "name": "YakNote",
+  "version": "1.0",
+  "description": "YakNote - Simple notes in your browser",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
     }
+  ],
+  "icons": {
+    "16": "yaknote128.png",
+    "48": "yaknote128.png",
+    "128": "yaknote128.png"
   }
-  
+}
