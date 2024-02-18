@@ -3,7 +3,7 @@
   "name": "YakNote",
   "version": "1.0",
   "description": "YakNote - Simple notes in your browser",
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html"
   },
